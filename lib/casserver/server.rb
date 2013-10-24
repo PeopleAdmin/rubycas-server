@@ -1,6 +1,7 @@
 require 'casserver/utils'
 require 'casserver/cas'
 require 'casserver/base'
+require 'erb'
 
 module CASServer
   class Server < CASServer::Base
@@ -132,7 +133,7 @@ module CASServer
         raise e
       end
 
-      config.merge! HashWithIndifferentAccess.new(YAML.load(config_file))
+      config.merge! HashWithIndifferentAccess.new(YAML.load(ERB.new(IO.read(config_file)).result))
       set :server, config[:server] || 'webrick'
     end
 
