@@ -1,6 +1,8 @@
 source "http://rubygems.org"
+ruby '2.0.0'
 gemspec
 
+gem "pg"
 
 # Gems for authenticators
 group :ldap do
